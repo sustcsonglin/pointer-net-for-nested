@@ -1,0 +1,57 @@
+# @package _global_
+
+
+model:
+  target:
+    _target_: src.model.parsing.Parser
+
+  embeder:
+    target:
+      _target_: src.model.module.ember.embedding.Embeder
+
+    #pos
+    n_pos_embed: 100
+    #char
+    n_char_embed: 50
+    n_char_out: 100
+    char_input_dropout: 0.
+    # bert
+    n_bert_out: 1024
+    n_bert_layers: 4
+    mix_dropout: 0.
+    use_projection: False
+    use_scalarmix: False
+    finetune: False
+    #word
+    n_embed: 300
+
+  encoder:
+    target:
+      _target_: src.model.module.encoder.lstm_encoder.LSTMencoder
+    embed_dropout: .33
+    embed_dropout_type: shared
+    lstm_dropout: .33
+    n_lstm_hidden: 500
+    n_lstm_layers: 3
+    before_lstm_dropout: 0.
+
+  scorer:
+      target:
+        _target_: src.model.module.scorer.const_scorer.ConstScorer
+      n_mlp_span: 1000
+      n_mlp_label: 100
+      mlp_dropout: .33
+      scaling: False
+      use_span: False
+      use_transition: False
+
+  loss:
+    target:
+      _target_: src.model.module.loss.semicrf.SemiCRF
+
+
+
+
+
+
+

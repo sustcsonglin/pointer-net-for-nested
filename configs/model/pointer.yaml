@@ -1,0 +1,75 @@
+# @package _global_
+
+datamodule:
+  target:
+    _target_: src.datamodule.const_data_pointer.ConstData4Pointer
+
+model:
+  target:
+    _target_: src.model.pointer.PointerNet
+
+  decode_type: beam_search
+  encoder_type: LSTM
+  beam_size: 1
+
+  use_hx: False
+  use_focus: False
+  use_prev_span: True
+  use_prev_label: False
+  use_remain_span: False
+  use_action_mask: False
+
+  n_lstm_hidden: 1000
+  input_span_size: 500
+  label_emb_size: 500
+  biaffine_size: 500
+  lstm_dropout: 0.33
+
+
+  self_attentive_encoder:
+    target:
+      _target_: src.model.module.encoder.self_attentive.SelfAttentiveEncoder
+#    d_model: 1024
+    num_layers: 2
+    num_heads: 8
+    d_kv: 64
+    d_ff: 2048
+    morpho_emb_dropout: 0.2
+    attention_dropout: 0.2
+    relu_dropout: 0.1
+    residual_dropout: 0.2
+
+  lstm_encoder:
+    embed_dropout: .33
+    embed_dropout_type: shared
+    lstm_dropout: .33
+    n_lstm_hidden: 1000
+    n_lstm_layers: 3
+    before_lstm_dropout: 0.
+
+
+  embeder:
+    #pos
+    n_pos_embed: 100
+    #char
+    n_char_embed: 50
+    n_char_out: 100
+    char_input_dropout: 0.
+    # bert
+    n_bert_out: 1024
+    n_bert_layers: 4
+    mix_dropout: 0.
+    use_projection: False
+    use_scalarmix: False
+    finetune: False
+    #word
+    n_embed: 300
+
+  metric:
+    write_result_to_file: False
+
+  name: 'pointer_net_use_prev_span_${model.use_prev_span}_use_remain_span_${model.use_remain_span}_use_prev_label_${model.use_prev_label}_use_word_${datamodule.use_word}_use_emb_${datamodule.use_emb}'
+
+
+
+

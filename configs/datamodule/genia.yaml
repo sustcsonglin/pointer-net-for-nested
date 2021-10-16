@@ -1,0 +1,24 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.nested_ner.NestedNERData
+
+  train: "${root}/data/genia/genia.train"
+  dev: "${root}/data/genia/genia.dev"
+  test: "${root}/data/genia/genia.test"
+  cache: "${root}/data/genia/genia.pickle"
+  cache_bert: "${root}/data/genia/genia.cache_bert"
+  clean_word: False
+  bert: "dmis-lab/biobert-large-cased-v1.1"
+  name: 'genia'
+  ext_emb_path: "${root}/data/genia/PubMed-shuffle-win-30.txt"
+
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.NERMetric
+    write_result_to_file: True

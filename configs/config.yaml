@@ -1,0 +1,37 @@
+# @package _global_
+
+# specify here default training configuration
+defaults:
+    - trainer: default_trainer
+    - model: _base
+    - datamodule: _base
+
+runner:
+    _target_: src.runner.base.Runner
+
+work_dir: ${hydra:runtime.cwd}/experiment/${datamodule.name}/${model.name}/${now:%Y-%m-%d}-${now:%H-%M-%S}-seed-${seed}
+
+wandb: False
+checkpoint: False
+device: 0
+seed: 0
+accumulation: 1
+use_logger: True
+distributed: False
+debug: False
+
+
+# output paths for hydra logs
+root: "."
+suffix: ""
+
+hydra:
+    run:
+        dir:  ${work_dir}
+    sweep:
+        dir: logs/multiruns/experiment/${datamodule.name}/${model.name}/${now:%Y-%m-%d}-${now:%H-%M-%S}-seed-${seed}
+        subdir: ${hydra.job.num}
+    job:
+        env_set:
+            WANDB_CONSOLE: 'off'
+

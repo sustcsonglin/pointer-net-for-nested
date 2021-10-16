@@ -1,0 +1,20 @@
+# @package _global_
+
+defaults:
+  - override /optim: finetune_bert
+
+trainer:
+  min_epochs: 1
+  max_epochs: 10
+
+callbacks:
+  transformer_scheduler:
+    _target_: src.callbacks.transformer_scheduler.TransformerLrScheduler
+    warmup: ${optim.warmup}
+
+model:
+  embeder:
+    finetune: True
+
+optim:
+  only_embeder: True

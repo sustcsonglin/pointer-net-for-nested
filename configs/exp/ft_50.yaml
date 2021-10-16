@@ -1,0 +1,47 @@
+
+# @package _global_
+defaults:
+  - /optim: finetune_bert
+
+
+trainer:
+  min_epochs: 1
+  max_epochs: 50
+
+
+accumulation: 15
+
+datamodule:
+  max_tokens: 200
+  max_tokens_test: 1000
+  max_len: 200
+  use_word: False
+  use_emb: False
+
+# save checkpoints of the model.
+checkpoint: True
+
+
+model:
+  embeder:
+    finetune: True
+
+
+optim:
+  only_embeder: True
+  lr_rate: 50
+
+
+callbacks:
+  transformer_scheduler:
+    _target_: src.callbacks.transformer_scheduler.TransformerLrScheduler
+    warmup: ${optim.warmup}
+
+  pretty_progress_bar:
+    _target_: src.callbacks.progressbar.PrettyProgressBar
+    refresh_rate: 1
+    process_position: 0
+
+
+
+

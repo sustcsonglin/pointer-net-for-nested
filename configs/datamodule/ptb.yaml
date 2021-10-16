@@ -1,0 +1,31 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.const_data_pointer.ConstData4Pointer
+  train_const: "${root}/data/ptb/02-21.10way.clean.txt"
+  dev_const: "${root}/data/ptb/22.auto.clean.txt"
+  test_const: "${root}/data/ptb/23.auto.clean.txt"
+  cache: "${root}/data/ptb/ptb.const.pickle"
+  bert: 'bert-large-cased'
+  cache_bert: "${root}/data/ptb/ptb.const.cache_bert"
+  ext_emb_path: "${root}/data/ptb/glove.6B.100d.txt"
+  clean_word: False
+  name: 'ptb'
+
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.SpanMetric
+    write_result_to_file: True
+
+
+
+
+
+
+
+

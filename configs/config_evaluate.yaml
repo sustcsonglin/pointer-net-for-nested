@@ -1,0 +1,9 @@
+defaults:
+    - config
+
+load_from_checkpoint: ~
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

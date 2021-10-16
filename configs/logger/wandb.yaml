@@ -1,0 +1,9 @@
+logger:
+    wandb:
+        _target_: pytorch_lightning.loggers.wandb.WandbLogger
+        project: "supervised_parsing"
+        entity: "sonta2020"
+        job_type: "train"
+        group: ""
+        name: ""
+        save_dir: "${work_dir}"

@@ -1,0 +1,28 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.nested_ner.NestedNERData
+
+  train: "${root}/data/ace2004/ace2004.train"
+  dev: "${root}/data/ace2004/ace2004.dev"
+  test: "${root}/data/ace2004/ace2004.test"
+  cache: "${root}/data/ace2004/ace2004.pickle"
+  cache_bert: "${root}/data/ace2004/ace2004.cache_bert"
+  ext_emb_path: "${root}/data/ptb/glove.6B.100d.txt"
+  clean_word: False
+  bert: 'bert-large-cased'
+  name: 'ace04'
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.NERMetric
+    write_result_to_file: True
+
+
+
+
+
