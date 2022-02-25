@@ -1,5 +1,5 @@
 # pointer-net-for-nested
-The official implementation of  [Bottom-Up Constituency Parsing and Nested Named Entity Recognition with Pointer Networks](https://arxiv.org/pdf/2110.05419.pdf)
+The official implementation of ACL2022: [Bottom-Up Constituency Parsing and Nested Named Entity Recognition with Pointer Networks](https://arxiv.org/pdf/2110.05419.pdf)
 
 
 ## Setup
@@ -10,7 +10,10 @@ conda activate parsing
 while read requirement; do pip install $requirement; done < requirements.txt 
 ```
 
-Download preprocessed PTB and CTB7 from: [link](https://drive.google.com/drive/folders/1qFP2JbcltAJ-Jq3MpkS--0MGEIgyE6vQ?usp=sharing)
+Download preprocessed PTB, CTB7, GENIA from: [link](https://drive.google.com/drive/folders/1qFP2JbcltAJ-Jq3MpkS--0MGEIgyE6vQ?usp=sharing)
+
+For ACE04 and ACE05, send me e-mails.
+
 
 
  
