@@ -7,7 +7,7 @@ Environment
 ```
 conda create -n parsing python=3.7
 conda activate parsing
-while read requirement; do pip install $requirement; done < requirements.txt 
+while read requirement; do pip install $requirement; done < requirement.txt 
 ```
 
 Download preprocessed PTB, CTB7, GENIA from: [link](https://drive.google.com/drive/folders/1qFP2JbcltAJ-Jq3MpkS--0MGEIgyE6vQ?usp=sharing)
